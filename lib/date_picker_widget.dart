@@ -170,6 +170,7 @@ class _DatePickerState extends State<DatePicker> {
           return DateWidget(
             date: date,
             dayBuilder: widget.dayBuilder,
+            isSelected: isSelected,
             monthTextStyle: isDeactivated
                 ? deactivatedMonthStyle
                 : isSelected

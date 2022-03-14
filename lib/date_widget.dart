@@ -14,7 +14,8 @@ class DateWidget extends StatelessWidget {
   final DateTime date;
   final TextStyle? monthTextStyle, dayTextStyle, dateTextStyle;
   final Color selectionColor;
-  final Widget Function(String day)? dayBuilder;
+  final bool isSelected;
+  final Widget Function(String day, bool isSelected)? dayBuilder;
   final DateSelectionCallback? onDateSelected;
   final String? locale;
 
@@ -28,6 +29,7 @@ class DateWidget extends StatelessWidget {
     this.onDateSelected,
     this.locale,
     this.dayBuilder,
+    this.isSelected = false,
   });
 
   @override
@@ -49,7 +51,7 @@ class DateWidget extends StatelessWidget {
               Text(new DateFormat("MMM", locale).format(date).toUpperCase(), // Month
                   style: monthTextStyle),
               dayBuilder != null
-                  ? dayBuilder!(date.day.toString())
+                  ? dayBuilder!(date.day.toString(), isSelected)
                   : Text(date.day.toString(), // Date
                       style: dateTextStyle),
               Text(new DateFormat("E", locale).format(date).toUpperCase(), // WeekDay

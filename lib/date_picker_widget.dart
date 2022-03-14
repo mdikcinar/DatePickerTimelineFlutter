@@ -51,7 +51,7 @@ class DatePicker extends StatefulWidget {
   /// Callback function for when a different date is selected
   final DateChangeListener? onDateChange;
 
-  final Widget Function(String day)? dayBuilder;
+  final Widget Function(String day, bool isSelected)? dayBuilder;
 
   /// Max limit up to which the dates are shown.
   /// Days are counted from the startDate

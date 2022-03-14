@@ -14,6 +14,7 @@ class DateWidget extends StatelessWidget {
   final DateTime date;
   final TextStyle? monthTextStyle, dayTextStyle, dateTextStyle;
   final Color selectionColor;
+  final Widget Function(String day)? dayBuilder;
   final DateSelectionCallback? onDateSelected;
   final String? locale;
 
@@ -26,6 +27,7 @@ class DateWidget extends StatelessWidget {
     this.width,
     this.onDateSelected,
     this.locale,
+    this.dayBuilder,
   });
 
   @override
@@ -46,8 +48,10 @@ class DateWidget extends StatelessWidget {
             children: <Widget>[
               Text(new DateFormat("MMM", locale).format(date).toUpperCase(), // Month
                   style: monthTextStyle),
-              Text(date.day.toString(), // Date
-                  style: dateTextStyle),
+              dayBuilder != null
+                  ? dayBuilder!(date.day.toString())
+                  : Text(date.day.toString(), // Date
+                      style: dateTextStyle),
               Text(new DateFormat("E", locale).format(date).toUpperCase(), // WeekDay
                   style: dayTextStyle)
             ],
